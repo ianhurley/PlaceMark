@@ -1,4 +1,5 @@
 import { v4 } from "uuid";
+import { spotMemStore } from "./spot-mem-store.js";
 
 let swimlists = [];
 
@@ -13,8 +14,10 @@ export const swimlistMemStore = {
     return swimlist;
   },
 
-  async getswimlistById(id) {
-    return swimlists.find((swimlist) => swimlist._id === id);
+  async getSwimlistById(id) {
+    const list = swimlists.find((swimlist) => swimlist._id === id);
+    list.spots = await spotMemStore.getSpotsBySwimlistId(list._id);
+    return list;
   },
 
   async deleteSwimlistById(id) {
@@ -24,5 +27,9 @@ export const swimlistMemStore = {
 
   async deleteAllSwimlists() {
     swimlists = [];
+  },
+
+  async getUserSwimlists(userid) {
+    return swimlists.filter((swimlist) => swimlist.userid === userid);
   },
 };
