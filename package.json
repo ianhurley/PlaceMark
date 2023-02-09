@@ -1,0 +1,25 @@
+{
+  "name": "placemark",
+  "version": "0.1.0",
+  "description": "PlaceMark: a Hapi/node application for managing Points of Interest",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "lint": "./node_modules/.bin/eslint . --ext .js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.33.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-import": "^2.27.5",
+    "prettier": "^2.8.4"
+  },
+  "dependencies": {
+    "@hapi/hapi": "^21.2.1",
+    "@hapi/vision": "^7.0.0",
+    "handlebars": "^4.7.7"
+  }
+}
