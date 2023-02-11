@@ -1,0 +1,18 @@
+{
+  "spots": [
+    {
+      "name": "dublin",
+      "categorey": "pier",
+      "description": "test",
+      "_id": "113d1ec8-41d2-47ce-bd6e-5c30863ee661",
+      "swimlistid": "e3aba12c-41c1-45f6-acf5-6cdd77661bc4"
+    },
+    {
+      "name": "wicklow",
+      "categorey": "quay",
+      "description": "test2",
+      "_id": "28e823ae-8414-4eee-8a7c-1a55e7462908",
+      "swimlistid": "e3aba12c-41c1-45f6-acf5-6cdd77661bc4"
+    }
+  ]
+}

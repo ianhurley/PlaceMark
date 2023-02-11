@@ -25,4 +25,12 @@ export const dashboardController = {
       return h.redirect("/dashboard");
     },
   },
+
+  deleteSwimlist: {
+    handler: async function (request, h) {
+      const swimlist = await db.swimlistStore.getSwimlistById(request.params.id);
+      await db.swimlistStore.deleteSwimlistById(swimlist._id);
+      return h.redirect("/dashboard");
+    },
+  },
 };

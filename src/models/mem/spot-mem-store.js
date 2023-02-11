@@ -36,8 +36,8 @@ export const spotMemStore = {
   },
 
   async updateSpot(spot, updatedSpot) {
-    spot.spot = updatedSpot.spot;
-    spot.region = updatedSpot.region;
-    spot.county = updatedSpot.county;
+    spot.name = updatedSpot.name;
+    spot.categorey = updatedSpot.categorey;
+    spot.description = updatedSpot.description;
   },
 };

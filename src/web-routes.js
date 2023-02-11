@@ -17,4 +17,7 @@ export const webRoutes = [
 
   { method: "GET", path: "/swimlist/{id}", config: swimlistController.index },
   { method: "POST", path: "/swimlist/{id}/addspot", config: swimlistController.addSpot },
+
+  { method: "GET", path: "/dashboard/deleteswimlist/{id}", config: dashboardController.deleteSwimlist },
+  { method: "GET", path: "/swimlist/{id}/deletespot/{spotid}", config: swimlistController.deleteSpot },
 ];

@@ -1,0 +1,11 @@
+{
+  "users": [
+    {
+      "firstName": "ian",
+      "lastName": "hurley",
+      "email": "ian.hurley@gmail.com",
+      "password": "secret",
+      "_id": "bbe6ed3f-e687-4029-a73e-92b3841d8642"
+    }
+  ]
+}

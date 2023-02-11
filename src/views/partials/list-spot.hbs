@@ -1,22 +1,30 @@
 <table class="table is-fullwidth">
   <thead>
     <tr>
-      <th>Swim Spot</th>
-      <th>Region</th>
-      <th>County</th>
+      <th>Name</th>
+      <th>Categorey</th>
+      <th>Description</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     {{#each swimlist.spots}}
       <tr>
         <td>
-          {{spot}}
+          {{name}}
         </td>
         <td>
-          {{region}}
+          {{categorey}}
         </td>
         <td>
-          {{county}}
+          {{description}}
+        </td>
+        <td>
+          <a href="/swimlist/{{../swimlist._id}}/deletespot/{{_id}}" class="button is-rounded">
+            <span style="color: grey;">
+            <i class="fa-regular fa-trash-can"></i>
+            </span>
+          </a>
         </td>
       </tr>
     {{/each}}
