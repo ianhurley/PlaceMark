@@ -1,4 +1,5 @@
 import { db } from "../models/db.js";
+import { SpotSpec } from "../models/joi-schemas.js";
 
 export const swimlistController = {
   index: {
@@ -13,6 +14,13 @@ export const swimlistController = {
   },
 
   addSpot: {
+    validate: {
+      payload: SpotSpec,
+      options: { abortEarly: false },
+      failAction: function (request, h, error) {
+        return h.view("swimlist-view", { title: "Add spot error", errors: error.details }).takeover().code(400);
+      },
+    },
     handler: async function (request, h) {
       const swimlist = await db.swimlistStore.getSwimlistById(request.params.id);
       const newSpot = {
@@ -22,7 +30,7 @@ export const swimlistController = {
       };
       await db.spotStore.addSpot(swimlist._id, newSpot);
       return h.redirect(`/swimlist/${swimlist._id}`);
-    },  
+    },
   },
 
   deleteSpot: {

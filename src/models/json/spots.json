@@ -13,6 +13,13 @@
       "description": "test2",
       "_id": "28e823ae-8414-4eee-8a7c-1a55e7462908",
       "swimlistid": "e3aba12c-41c1-45f6-acf5-6cdd77661bc4"
+    },
+    {
+      "name": "test",
+      "categorey": "test",
+      "description": "test",
+      "_id": "4250df33-c5aa-4bcf-b05b-2895e370c50a",
+      "swimlistid": "e3aba12c-41c1-45f6-acf5-6cdd77661bc4"
     }
   ]
 }
