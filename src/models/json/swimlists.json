@@ -1,24 +1,16 @@
 {
   "swimlists": [
     {
-      "userid": "bbe6ed3f-e687-4029-a73e-92b3841d8642",
-      "title": "Leinster",
-      "_id": "e3aba12c-41c1-45f6-acf5-6cdd77661bc4"
+      "title": "test1",
+      "_id": "119b532c-d7bd-4472-bed2-9d8d15ef6c1c"
     },
     {
-      "userid": "bbe6ed3f-e687-4029-a73e-92b3841d8642",
-      "title": "Ulster",
-      "_id": "9045e2c5-bb99-46f2-93cf-25c9c30a3f21"
+      "title": "test2",
+      "_id": "382c30e6-6ef1-4fdd-9c58-d868dd8a6be9"
     },
     {
-      "userid": "bbe6ed3f-e687-4029-a73e-92b3841d8642",
-      "title": "Munster",
-      "_id": "a7a25eee-5c6c-42fb-9232-719b158c9620"
-    },
-    {
-      "userid": "bbe6ed3f-e687-4029-a73e-92b3841d8642",
-      "title": "Connaght",
-      "_id": "eb3bef39-5402-4540-901d-302c34fb2b66"
+      "title": "test3",
+      "_id": "66d0f8f5-9850-47af-b1b0-30a655d6890e"
     }
   ]
 }

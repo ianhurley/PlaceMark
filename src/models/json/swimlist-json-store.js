@@ -22,8 +22,12 @@ export const swimlistJsonStore = {
 
   async getSwimlistById(id) {
     await db.read();
-    const list = db.data.swimlists.find((swimlist) => swimlist._id === id);
-    list.spots = await spotJsonStore.getSpotsBySwimlistId(list._id);
+    let list = db.data.swimlists.find((swimlist) => swimlist._id === id);
+    if (list) {
+      list.spots = await spotJsonStore.getSpotsBySwimlistId(list._id);
+    } else {
+      list = null;
+    }
     return list;
   },
 
@@ -35,7 +39,7 @@ export const swimlistJsonStore = {
   async deleteSwimlistById(id) {
     await db.read();
     const index = db.data.swimlists.findIndex((swimlist) => swimlist._id === id);
-    db.data.swimlists.splice(index, 1);
+    if (index !== -1) db.data.swimlists.splice(index, 1);
     await db.write();
   },
 

@@ -16,14 +16,17 @@ export const swimlistMemStore = {
 
   async getSwimlistById(id) {
     const list = swimlists.find((swimlist) => swimlist._id === id);
-    list.spots = await spotMemStore.getSpotsBySwimlistId(list._id);
-    return list;
+    if (list) {
+      list.spots = await spotMemStore.getSpotsBySwimlistId(list._id);
+      return list;
+    }
+    return null;
   },
 
   async deleteSwimlistById(id) {
     const index = swimlists.findIndex((swimlist) => swimlist._id === id);
-    swimlists.splice(index, 1);
-  },
+    if (index !== -1) swimlists.splice(index, 1);
+  },  
 
   async deleteAllSwimlists() {
     swimlists = [];
