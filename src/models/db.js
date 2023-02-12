@@ -9,6 +9,7 @@ import { spotJsonStore } from "./json/spot-json-store.js";
 import { connectMongo } from "./mongo/connect.js";
 import { userMongoStore } from "./mongo/user-mongo-store.js";
 import { swimlistMongoStore } from "./mongo/swimlist-mongo-store.js";
+import { spotMongoStore } from "./mongo/spot-mongo-store.js";
 
 export const db = {
   userStore: null,
@@ -25,6 +26,7 @@ export const db = {
       case "mongo":
         this.userStore = userMongoStore;
         this.swimlistStore = swimlistMongoStore;
+        this.spotStore = spotMongoStore;
         connectMongo();
         break;
       default:

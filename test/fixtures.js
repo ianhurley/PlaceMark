@@ -25,6 +25,16 @@ export const maggie = {
       password: "secret"
     }
   ];
+
+  export const ulster = {
+    title: "Favourites"
+  };
+  
+  export const testspot = {
+    "name": "spot",
+    "categorey": "sea",
+    "description": "sea spot"
+  };
   
   export const leinster = {
     title: "Favourites"
@@ -39,5 +49,23 @@ export const maggie = {
     },
     {
       title: "test3"
+    }
+  ];
+
+  export const testSpots = [
+    {
+      "name": "spot1",
+      "categorey": "pier",
+      "description": "pier spot1"
+    },
+    {
+      "name": "spot2",
+      "categorey": "quay",
+      "description": "quay spot2"
+    },
+    {
+      "name": "spot3",
+      "categorey": "lake",
+      "description": "lake spot3"
     }
   ];
