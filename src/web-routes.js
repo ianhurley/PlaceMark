@@ -20,4 +20,7 @@ export const webRoutes = [
 
   { method: "GET", path: "/dashboard/deleteswimlist/{id}", config: dashboardController.deleteSwimlist },
   { method: "GET", path: "/swimlist/{id}/deletespot/{spotid}", config: swimlistController.deleteSpot },
+
+  { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" } }, options: { auth: false } }
+
 ];

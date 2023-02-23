@@ -1,7 +1,7 @@
 import Boom from "@hapi/boom";
+import { IdSpec, SwimlistArraySpec, SwimlistSpec, SwimlistSpecPlus } from "../models/joi-schemas.js";
 import { db } from "../models/db.js";
-
-// import { maggie, leinster, testSwimlists } from "../fixtures.js";
+import { validationError } from "./logger.js";
 
 export const swimlistApi = {
   find: {
@@ -14,6 +14,10 @@ export const swimlistApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    tags: ["api"],
+    response: { schema: SwimlistArraySpec, failAction: validationError },
+    description: "Get all swimlists",
+    notes: "Returns all swimlists",
   },
 
   findOne: {
@@ -29,6 +33,11 @@ export const swimlistApi = {
         return Boom.serverUnavailable("No Swimlist with this id");
       }
     },
+    tags: ["api"],
+    description: "Find a Swimlist",
+    notes: "Returns a swimlist",
+    validate: { params: { id: IdSpec }, failAction: validationError },
+    response: { schema: SwimlistSpecPlus, failAction: validationError },
   },
 
   create: {
@@ -45,6 +54,11 @@ export const swimlistApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    tags: ["api"],
+    description: "Create a Swimlist",
+    notes: "Returns the newly created swimlist",
+    validate: { payload: SwimlistSpec, failAction: validationError },
+    response: { schema: SwimlistSpecPlus, failAction: validationError },
   },
 
   deleteOne: {
@@ -61,6 +75,9 @@ export const swimlistApi = {
         return Boom.serverUnavailable("No Swimlist with this id");
       }
     },
+    tags: ["api"],
+    description: "Delete a swimlist",
+    validate: { params: { id: IdSpec }, failAction: validationError },
   },
 
   deleteAll: {
@@ -73,5 +90,7 @@ export const swimlistApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    tags: ["api"],
+    description: "Delete all SwimlistApi",
   },
 };
