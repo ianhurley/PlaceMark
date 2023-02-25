@@ -12,9 +12,13 @@ suite("Swimlist API tests", () => {
   let user = null;
 
   setup(async () => {
+    placemarkService.clearAuth();
+    user = await placemarkService.createUser(maggie);
+    await placemarkService.authenticate(maggie);
     await placemarkService.deleteAllSwimlists();
     await placemarkService.deleteAllUsers();
     user = await placemarkService.createUser(maggie);
+    await placemarkService.authenticate(maggie);
     ulster.userid = user._id;
   });
 

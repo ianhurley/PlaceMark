@@ -8,10 +8,14 @@ suite("Spot API tests", () => {
   let test1 = null;
 
   setup(async () => {
-    await placemarkService.deleteAllSwimlists();
-    await placemarkService.deleteAllUsers();
-    await placemarkService.deleteAllSpots();
+    placemarkService.clearAuth();
     user = await placemarkService.createUser(maggie);
+    await placemarkService.authenticate(maggie);
+    await placemarkService.deleteAllSwimlists();
+    await placemarkService.deleteAllSpots();
+    await placemarkService.deleteAllUsers();
+    user = await placemarkService.createUser(maggie);
+    await placemarkService.authenticate(maggie);
     ulster.userid = user._id;
     test1 = await placemarkService.createSwimlist(ulster);
   });

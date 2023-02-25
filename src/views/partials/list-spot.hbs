@@ -2,8 +2,10 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>County</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
       <th>Categorey</th>
-      <th>Description</th>
       <th></th>
     </tr>
   </thead>
@@ -14,10 +16,16 @@
           {{name}}
         </td>
         <td>
-          {{categorey}}
+          {{county}}
         </td>
         <td>
-          {{description}}
+          {{latitude}}
+        </td>
+        <td>
+          {{longitude}}
+        </td>
+        <td>
+          {{categorey}}
         </td>
         <td>
           <a href="/swimlist/{{../swimlist._id}}/deletespot/{{_id}}" class="button is-rounded">

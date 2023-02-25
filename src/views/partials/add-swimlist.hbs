@@ -1,6 +1,17 @@
 <form action="/dashboard/addswimlist" method="POST">
   <div class="field">
-    <label class="label">Create a Swimlist By Region</label> <input class="input is-rounded" type="text" placeholder="Enter swimlist region" name="title">
+  <label class="label">Create Swimlist by Region:</label>
+  <div class="control">
+    <div class="select is-rounded is-hoverable">
+      <select name="title" required>
+        <option value="" disabled selected>Select Region</option>
+        <option value="Ulster">Ulster</option>
+        <option value="Munster">Munster</option>
+        <option value="Connaght">Connaght</option>
+        <option value="Leinster">Leinster</option>
+      </select>
+    </div>
   </div>
+</div>
   <button class="button is-link is-rounded">Add Region</button>
 </form>

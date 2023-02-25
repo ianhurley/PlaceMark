@@ -5,7 +5,9 @@ import { validationError } from "./logger.js";
 
 export const swimlistApi = {
   find: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       try {
         const swimlists = await db.swimlistStore.getAllSwimlists();
@@ -21,7 +23,9 @@ export const swimlistApi = {
   },
 
   findOne: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     async handler(request) {
       try {
         const swimlist = await db.swimlistStore.getSwimlistById(request.params.id);
@@ -41,7 +45,9 @@ export const swimlistApi = {
   },
 
   create: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       try {
         const swimlist = request.payload;
@@ -62,7 +68,9 @@ export const swimlistApi = {
   },
 
   deleteOne: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       try {
         const swimlist = await db.swimlistStore.getSwimlistById(request.params.id);
@@ -81,7 +89,9 @@ export const swimlistApi = {
   },
 
   deleteAll: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       try {
         await db.swimlistStore.deleteAllSwimlists();

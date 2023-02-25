@@ -23,9 +23,11 @@ export const UserArray = Joi.array().items(UserSpecPlus).label("UserArray");
 
 export const SpotSpec = Joi.object()
   .keys({
-    name: Joi.string().required().example("liffey"),
-    categorey: Joi.string().required().example("River"),
-    description: Joi.string().required().example("Comment"),
+    name: Joi.string().required().example("Bull Wall"),
+    county: Joi.string().required().example("Dublin"),
+    latitude: Joi.number().required().example(53.354531),
+    longitude: Joi.number().required().example(-6.169717),
+    categorey: Joi.string().required().example("The Sea"),
     swimlistid: IdSpec,
   })
   .label("Spot");

@@ -4,8 +4,10 @@ const { Schema } = Mongoose;
 
 const spotSchema = new Schema({
   name: String,
+  county: String,
+  latitude: String,
+  longitude: String,
   categorey: String,
-  description: String,
   swimlistid: {
     type: Schema.Types.ObjectId,
     ref: "Swimlist",

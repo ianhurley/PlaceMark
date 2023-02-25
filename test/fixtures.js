@@ -29,45 +29,53 @@ export const maggie = {
   ];
 
   export const ulster = {
-    title: "Favourites"
+    title: "Ulster"
   };
   
   export const testspot = {
-    "name": "spot",
-    "categorey": "sea",
-    "description": "sea spot"
+    "name": "Bull Wall, Clontarf Road",
+    "county": "Dublin",
+    "latitude": "53.354531",
+    "longitude": "-6.169717",
+    "categorey": "The Sea"
   };
   
   export const leinster = {
-    title: "Favourites"
+    title: "Leinster"
   };
   
   export const testSwimlists = [
     {
-      title: "test1"
+      title: "Ulster"
     },
     {
-      title: "test2"
+      title: "Munster"
     },
     {
-      title: "test3"
+      title: "Connaght"
     }
   ];
 
   export const testSpots = [
     {
-      "name": "spot1",
-      "categorey": "pier",
-      "description": "pier spot1"
+      "name": "Bull Wall, Clontarf Road",
+      "county": "Dublin",
+      "latitude": "53.354531",
+      "longitude": "-6.169717",
+      "categorey": "The Sea"
     },
     {
-      "name": "spot2",
-      "categorey": "quay",
-      "description": "quay spot2"
+      "name": "Irelands Eye",
+      "county": "Dublin",
+      "latitude": "53.405145",
+      "longitude": "-6.066119",
+      "categorey": "The Sea"
     },
     {
-      "name": "spot3",
-      "categorey": "lake",
-      "description": "lake spot3"
+      "name": "Lough Bray Lower",
+      "county": "Wicklow",
+      "latitude": "53.185735",
+      "longitude": "-6.292679",
+      "categorey": "Loughs"
     }
   ];

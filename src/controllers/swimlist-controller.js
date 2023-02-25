@@ -25,8 +25,10 @@ export const swimlistController = {
       const swimlist = await db.swimlistStore.getSwimlistById(request.params.id);
       const newSpot = {
         name: request.payload.name,
+        county: request.payload.county,
+        latitude: Number(request.payload.latitude),
+        longitude: Number(request.payload.longitude),
         categorey: request.payload.categorey,
-        description: request.payload.description,
       };
       await db.spotStore.addSpot(swimlist._id, newSpot);
       return h.redirect(`/swimlist/${swimlist._id}`);

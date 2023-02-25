@@ -44,8 +44,10 @@ export const spotJsonStore = {
 
   async updateSpot(spot, updatedSpot) {
     spot.name = updatedSpot.name;
+    spot.county = updatedSpot.county;
+    spot.latitude = updatedSpot.latitude;
+    spot.longitude = updatedSpot.longitude;
     spot.categorey = updatedSpot.categorey;
-    spot.description = updatedSpot.description;
     await db.write();
   },
 };
