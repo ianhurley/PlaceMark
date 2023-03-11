@@ -53,3 +53,10 @@ export const SwimlistSpecPlus = SwimlistSpec.keys({
 }).label("SwimlistPlus");
 
 export const SwimlistArraySpec = Joi.array().items(SwimlistSpecPlus).label("SwimlistArray");
+
+export const JwtAuth = Joi.object()
+  .keys({
+    success: Joi.boolean().example("true").required(),
+    token: Joi.string().example("eyJhbGciOiJND.g5YmJisIjoiaGYwNTNjAOhE.gCWGmY5-YigQw0DCBo").required(),
+  })
+  .label("JwtAuth");

@@ -79,3 +79,8 @@ export const maggie = {
       "categorey": "Loughs"
     }
   ];
+
+  export const maggieCredentials = {
+    email: "maggie@simpson.com",
+    password: "secret"
+  }; 

@@ -39,5 +39,12 @@ export const swimlistMongoStore = {
 
   async deleteAllSwimlists() {
     await Swimlist.deleteMany({});
-  }
+  },
+
+  async updateSwimlist(updatedSwimlist) {
+    const swimlist = await Swimlist.findOne({ _id: updatedSwimlist._id });
+    swimlist.title = updatedSwimlist.title;
+    swimlist.img = updatedSwimlist.img;
+    await swimlist.save();
+  },
 };

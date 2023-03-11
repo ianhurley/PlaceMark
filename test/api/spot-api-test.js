@@ -1,7 +1,7 @@
 import { assert } from "chai";
 import { assertSubset } from "../test-utils.js";
 import { placemarkService } from "./placemark-service.js";
-import { maggie, ulster, testSwimlists, testSpots, testspot } from "../fixtures.js";
+import { maggie, ulster, testSwimlists, testSpots, testspot, maggieCredentials } from "../fixtures.js";
 
 suite("Spot API tests", () => {
   let user = null;
@@ -10,12 +10,12 @@ suite("Spot API tests", () => {
   setup(async () => {
     placemarkService.clearAuth();
     user = await placemarkService.createUser(maggie);
-    await placemarkService.authenticate(maggie);
+    await placemarkService.authenticate(maggieCredentials);
     await placemarkService.deleteAllSwimlists();
     await placemarkService.deleteAllSpots();
     await placemarkService.deleteAllUsers();
     user = await placemarkService.createUser(maggie);
-    await placemarkService.authenticate(maggie);
+    await placemarkService.authenticate(maggieCredentials);
     ulster.userid = user._id;
     test1 = await placemarkService.createSwimlist(ulster);
   });

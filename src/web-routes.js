@@ -2,6 +2,7 @@ import { accountsController } from "./controllers/accounts-controller.js";
 import { dashboardController } from "./controllers/dashboard-controller.js";
 import { aboutController } from "./controllers/about-controller.js";
 import { swimlistController } from "./controllers/swimlist-controller.js";
+import { spotController } from "./controllers/spot-controller.js";
 
 export const webRoutes = [
   { method: "GET", path: "/", config: accountsController.index },
@@ -21,6 +22,11 @@ export const webRoutes = [
   { method: "GET", path: "/dashboard/deleteswimlist/{id}", config: dashboardController.deleteSwimlist },
   { method: "GET", path: "/swimlist/{id}/deletespot/{spotid}", config: swimlistController.deleteSpot },
 
-  { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" } }, options: { auth: false } }
+  { method: "GET", path: "/spot/{id}/editspot/{spotid}", config: spotController.index },
+  { method: "POST", path: "/spot/{id}/updatespot/{spotid}", config: spotController.update },
+
+  { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" } }, options: { auth: false } },
+  { method: "POST", path: "/swimlist/{id}/uploadimage", config: swimlistController.uploadImage },
+
 
 ];

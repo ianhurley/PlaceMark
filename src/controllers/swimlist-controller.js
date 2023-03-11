@@ -1,5 +1,6 @@
 import { db } from "../models/db.js";
 import { SpotSpec } from "../models/joi-schemas.js";
+import { imageStore } from "../models/image-store.js";
 
 export const swimlistController = {
   index: {
@@ -40,6 +41,30 @@ export const swimlistController = {
       const swimlist = await db.swimlistStore.getSwimlistById(request.params.id);
       await db.spotStore.deleteSpot(request.params.spotid);
       return h.redirect(`/swimlist/${swimlist._id}`);
+    },
+  },
+
+  uploadImage: {
+    handler: async function (request, h) {
+      try {
+        const swimlist = await db.swimlistStore.getSwimlistById(request.params.id);
+        const file = request.payload.imagefile;
+        if (Object.keys(file).length > 0) {
+          const url = await imageStore.uploadImage(request.payload.imagefile);
+          swimlist.img = url;
+          await db.swimlistStore.updateSwimlist(swimlist);
+        }
+        return h.redirect(`/swimlist/${swimlist._id}`);
+      } catch (err) {
+        console.log(err);
+        return h.redirect(`/swimlist/${swimlist._id}`);
+      }
+    },
+    payload: {
+      multipart: true,
+      output: "data",
+      maxBytes: 209715200,
+      parse: true,
     },
   },
 };

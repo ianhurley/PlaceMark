@@ -7,6 +7,8 @@
       <th>Longitude</th>
       <th>Categorey</th>
       <th></th>
+      <th></th>
+      <th>Location Map</th>
     </tr>
   </thead>
   <tbody>
@@ -28,11 +30,41 @@
           {{categorey}}
         </td>
         <td>
+          <a href="/spot/{{../swimlist._id}}/editspot/{{_id}}" class="button is-rounded">
+            <span style="color: grey;">
+            <i class="fa-regular fa-edit"></i>
+            </span>
+          </a>
+        </td>
+        <td>
           <a href="/swimlist/{{../swimlist._id}}/deletespot/{{_id}}" class="button is-rounded">
             <span style="color: grey;">
             <i class="fa-regular fa-trash-can"></i>
             </span>
           </a>
+        </td>
+        <td>
+          <link rel = "stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+              <div id = "map{{@key}}" style = "width: 500px; height: 300px"></div>
+              <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+              <script>
+                 // Creating map options
+                 var mapOptions = {
+                    center: [parseFloat({{latitude}}), parseFloat({{longitude}})],
+                    zoom: 13
+                 }
+                 
+                 // Creating a map object
+                 var map = new L.map('map{{@key}}', mapOptions);
+                 
+                 // Creating a Layer object
+                 var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+
+                 var marker = L.marker([parseFloat({{latitude}}), parseFloat({{longitude}})]).addTo(map);
+                 
+                 // Adding layer to the map
+                 map.addLayer(layer);
+              </script>
         </td>
       </tr>
     {{/each}}

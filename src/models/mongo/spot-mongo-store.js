@@ -39,11 +39,12 @@ export const spotMongoStore = {
   },
 
   async updateSpot(spot, updatedSpot) {
-    spot.name = updatedSpot.name;
-    spot.county = updatedSpot.county;
-    spot.latitude = updatedSpot.latitude;
-    spot.longitude = updatedSpot.longitude;
-    spot.categorey = updatedSpot.categorey;
-    await spot.save();
+    const spotDoc = await Spot.findOne({ _id: spot._id });
+    spotDoc.name = updatedSpot.name;
+    spotDoc.county = updatedSpot.county;
+    spotDoc.latitude = updatedSpot.latitude;
+    spotDoc.longitude = updatedSpot.longitude;
+    spotDoc.categorey = updatedSpot.categorey;
+    await spotDoc.save();
   },
 };
