@@ -22,6 +22,18 @@ export const seedData = {
     },
     swimlists: {
       _model: "Swimlist",
+      ulster: {
+        title: "Ulster",
+        userid: "->users.bart"
+      },
+      munster: {
+        title: "Munster",
+        userid: "->users.bart"
+      },
+      connaght: {
+        title: "Connaght",
+        userid: "->users.bart"
+      },
       leinster: {
         title: "Leinster",
         userid: "->users.bart"

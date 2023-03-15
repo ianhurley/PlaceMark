@@ -1,72 +1,122 @@
-<table class="table is-fullwidth">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>County</th>
-      <th>Latitude</th>
-      <th>Longitude</th>
-      <th>Categorey</th>
-      <th></th>
-      <th></th>
-      <th>Location Map</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each swimlist.spots}}
+<div class="box box-link-hover-shadow">
+  <table class="table is-fullwidth">
+    <thead>
       <tr>
-        <td>
-          {{name}}
-        </td>
-        <td>
-          {{county}}
-        </td>
-        <td>
-          {{latitude}}
-        </td>
-        <td>
-          {{longitude}}
-        </td>
-        <td>
-          {{categorey}}
-        </td>
-        <td>
-          <a href="/spot/{{../swimlist._id}}/editspot/{{_id}}" class="button is-rounded">
-            <span style="color: grey;">
-            <i class="fa-regular fa-edit"></i>
-            </span>
-          </a>
-        </td>
-        <td>
-          <a href="/swimlist/{{../swimlist._id}}/deletespot/{{_id}}" class="button is-rounded">
-            <span style="color: grey;">
-            <i class="fa-regular fa-trash-can"></i>
-            </span>
-          </a>
-        </td>
-        <td>
-          <link rel = "stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
-              <div id = "map{{@key}}" style = "width: 500px; height: 300px"></div>
-              <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-              <script>
-                 // Creating map options
-                 var mapOptions = {
-                    center: [parseFloat({{latitude}}), parseFloat({{longitude}})],
-                    zoom: 13
-                 }
-                 
-                 // Creating a map object
-                 var map = new L.map('map{{@key}}', mapOptions);
-                 
-                 // Creating a Layer object
-                 var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
-
-                 var marker = L.marker([parseFloat({{latitude}}), parseFloat({{longitude}})]).addTo(map);
-                 
-                 // Adding layer to the map
-                 map.addLayer(layer);
-              </script>
-        </td>
+        <th>Name</th>
+        <th>County</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Category</th>
+        <th>Current Weather</th>
+        <th></th>
+        <th></th>
+        <th>Location Map</th>
       </tr>
-    {{/each}}
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      {{#each swimlist.spots}}
+        <tr>
+          <td>
+            {{name}}
+          </td>
+          <td>
+            {{county}}
+          </td>
+          <td>
+            {{latitude}}
+          </td>
+          <td>
+            {{longitude}}
+          </td>
+          <td>
+            {{categorey}}
+          </td>
+          <td>
+            <div id="weather-{{@key}}"></div>
+            <script>
+              var lat = {{latitude}};
+              var lon = {{longitude}};
+              var apikey = "ebd4cd66f4792de013d849ca0d4cab41";
+              var apiurl = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + apikey;
+
+              fetch(apiurl)
+                .then(response => response.json())
+                .then(data => {
+                  var weatherDiv = document.getElementById("weather-{{@key}}");
+                  var temp = Math.round(data.main.temp - 273.15);
+                  var description = data.weather[0].description;
+                  var iconCode = data.weather[0].icon;
+                  var windSpeed = data.wind.speed * 2.237;
+                  var weatherHtml = '<img src="http://openweathermap.org/img/w/' + iconCode + '.png" alt="' + description + '"><br> ' + temp + '°C<br>' + description + '<br><br>Wind Speed ' + windSpeed.toFixed(1) + ' mph';
+                  weatherDiv.innerHTML = weatherHtml;
+                })
+                .catch(error => {
+                  console.error('Error:', error);
+                  var weatherDiv = document.getElementById("weather-{{@key}}");
+                  weatherDiv.innerHTML = "Error fetching weather data";
+                });
+            </script>
+          </td>
+          <td>
+            <a href="/spot/{{../swimlist._id}}/editspot/{{_id}}" class="button is-rounded">
+              <span style="color: grey;">
+              <i class="fa-regular fa-edit"></i>
+              </span>
+            </a>
+          </td>
+          <td>
+            <a href="/swimlist/{{../swimlist._id}}/deletespot/{{_id}}" class="button is-rounded">
+              <span style="color: grey;">
+              <i class="fa-regular fa-trash-can"></i>
+              </span>
+            </a>
+          </td>
+          <td>
+            <link rel = "stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+                <div id = "map{{@key}}" style = "width: 500px; height: 300px"></div>
+                <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+                <script>
+                  var mapOptions = {
+                      center: [parseFloat({{latitude}}), parseFloat({{longitude}})],
+                      zoom: 13
+                  }
+                  var map = new L.map('map{{@key}}', mapOptions);
+                  var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+                  var marker = L.marker([parseFloat({{latitude}}), parseFloat({{longitude}})]).addTo(map);
+                  map.addLayer(layer);
+                </script>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+
+<div id="weather-{{@key}}"></div>
+            <script>
+              var lat = {{latitude}};
+              var lon = {{longitude}};
+              var apiurl = "https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&longitude=" + lon + "&hourly=temperature_2m,weathercode";
+
+              fetch(apiurl)
+                .then(response => response.json())
+                .then(data => {
+                  var weatherDiv = document.getElementById("weather-{{@key}}");
+                  var temp = Math.round(data.hourly.temperature_2m[0] - 273.15);
+                  var description = getWeatherDescription(data.hourly.weathercode[0]);
+                  var iconCode = getWeatherIcon(data.hourly.weathercode[0]);
+                  var windSpeed = data.hourly.windspeed_10m[0] * 2.237;
+                  var weatherHtml = '<img src="' + iconCode + '" alt="' + description + '"><br> ' + temp + '°C<br>' + description + '<br><br>Wind Speed ' + windSpeed.toFixed(1) + ' mph';
+                  weatherDiv.innerHTML = weatherHtml;
+                })
+                .catch(error => {
+                  console.error('Error:', error);
+                  var weatherDiv = document.getElementById("weather-{{@key}}");
+                  weatherDiv.innerHTML = "Error fetching weather data";
+                });
+                function getWeatherDescription(code) {
+                }
+
+                function getWeatherIcon(code) {
+                }
+            </script>
