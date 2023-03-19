@@ -92,31 +92,25 @@
   </table>
 </div>
 
-<div id="weather-{{@key}}"></div>
+<!--
+          <script src="weather-util.js"></script>
+            <div id="weather-{{@key}}"></div>
             <script>
-              var lat = {{latitude}};
-              var lon = {{longitude}};
-              var apiurl = "https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&longitude=" + lon + "&hourly=temperature_2m,weathercode";
-
-              fetch(apiurl)
-                .then(response => response.json())
+              const lat = {{latitude}};
+              const lon = {{longitude}};
+              fetchWeather(lat, lon)
                 .then(data => {
-                  var weatherDiv = document.getElementById("weather-{{@key}}");
-                  var temp = Math.round(data.hourly.temperature_2m[0] - 273.15);
-                  var description = getWeatherDescription(data.hourly.weathercode[0]);
-                  var iconCode = getWeatherIcon(data.hourly.weathercode[0]);
-                  var windSpeed = data.hourly.windspeed_10m[0] * 2.237;
-                  var weatherHtml = '<img src="' + iconCode + '" alt="' + description + '"><br> ' + temp + '°C<br>' + description + '<br><br>Wind Speed ' + windSpeed.toFixed(1) + ' mph';
+                  const weatherDiv = document.getElementById("weather-{{@key}}");
+                  const temp = Math.round(data.main.temp - 273.15);
+                  const description = data.weather[0].description;
+                  const iconCode = data.weather[0].icon;
+                  const windSpeed = data.wind.speed * 2.237;
+                  const weatherHtml = '<img src="http://openweathermap.org/img/w/' + iconCode + '.png" alt="' + description + '"><br> ' + temp + '°C<br>' + description + '<br><br>Wind Speed ' + windSpeed.toFixed(1) + ' mph';
                   weatherDiv.innerHTML = weatherHtml;
                 })
                 .catch(error => {
                   console.error('Error:', error);
-                  var weatherDiv = document.getElementById("weather-{{@key}}");
+                  const weatherDiv = document.getElementById("weather-{{@key}}");
                   weatherDiv.innerHTML = "Error fetching weather data";
                 });
-                function getWeatherDescription(code) {
-                }
-
-                function getWeatherIcon(code) {
-                }
-            </script>
+            </script> -->

@@ -8,7 +8,8 @@
     "start": "node src/server.js",
     "lint": "./node_modules/.bin/eslint . --ext .js",
     "test": "mocha --ui tdd test/**/*.js -exit",
-    "dev": "nodemon  src/server.js"
+    "dev": "nodemon  src/server.js",
+    "testapi": "./node_modules/mocha/bin/_mocha --ui tdd test/api/**/*.js -exit --timeout 10000"
   },
   "author": "",
   "license": "ISC",
