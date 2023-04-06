@@ -1,4 +1,5 @@
 import Hapi from "@hapi/hapi";
+import fs from "fs";
 import Vision from "@hapi/vision";
 import Cookie from "@hapi/cookie";
 import Inert from "@hapi/inert";
@@ -14,6 +15,7 @@ import { webRoutes } from "./web-routes.js";
 import { db } from "./models/db.js";
 import { accountsController } from "./controllers/accounts-controller.js";
 import { apiRoutes } from "./api-routes.js";
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -41,7 +43,11 @@ if (result.error) {
 
 async function init() {
   const server = Hapi.server({
-    port: process.env.PORT || 3000,
+    port: process.env.PORT || 3443,
+    tls: {
+      key: fs.readFileSync("keys/private/webserver.key"),
+      cert: fs.readFileSync("keys/webserver.crt")
+    }
   });
 
   await server.register(Vision);
