@@ -10,8 +10,10 @@ export const UserCredentialsSpec = Joi.object()
   .label("UserCredentials");
 
 export const UserSpec = UserCredentialsSpec.keys({
-  firstName: Joi.string().example("Homer").required(),
-  lastName: Joi.string().example("Simpson").required(),
+  firstName: Joi.string().example("Homer").regex(/^[A-Z][a-z]{2,}$/), 
+  lastName: Joi.string().example("Simpson").regex(/^[A-Z][A-Za-z'-]{2,}$/), 
+  mobile: Joi.string().example("0861234567").regex(/^08[0-9]{8}$/), 
+  postcode: Joi.string().example("D16WE22").regex(/^[a-zA-Z0-9]{7}$/), 
 }).label("UserDetails");
 
 export const UserSpecPlus = UserSpec.keys({
