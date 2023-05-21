@@ -2,7 +2,7 @@ import Hapi from "@hapi/hapi";
 import Vision from "@hapi/vision";
 import Cookie from "@hapi/cookie";
 import Inert from "@hapi/inert";
-import HapiSwagger from "hapi-swagger";
+// import HapiSwagger from "hapi-swagger";
 import dotenv from "dotenv";
 import Handlebars from "handlebars";
 import path from "path";
@@ -41,7 +41,8 @@ if (result.error) {
 
 async function init() {
   const server = Hapi.server({
-    port: process.env.PORT || 3000,
+    port: process.env.PORT || 4000,
+    routes: { cors: true },
   });
 
   await server.register(Vision);
@@ -52,10 +53,10 @@ async function init() {
   await server.register([
     Inert,
     Vision,
-    {
-      plugin: HapiSwagger,
-      options: swaggerOptions,
-    },
+    // {
+      // plugin: HapiSwagger,
+      // options: swaggerOptions,
+    // },
   ]);
   
   server.validator(Joi);
